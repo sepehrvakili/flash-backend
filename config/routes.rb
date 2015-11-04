@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'registrations/create'
+
+  get 'registrations/destroy'
+
+  get 'registrations/login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,6 +19,11 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  post "/signup", to: "registrations#create"
+  delete "/signup", to: "registrations#destroy"
+
+  post "/login", to: "registrations#login"
 
   # Example resource route with options:
   #   resources :products do
