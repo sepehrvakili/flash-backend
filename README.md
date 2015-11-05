@@ -42,27 +42,9 @@ You will receive the following JSON:
 
 #DECKS
 
-##To Add a Deck
+##To Show All Decks for a User
 
-###Send `post` request to `/user/:username/decks`
-
-Must provide these parameters:
-
-Headers:
-
-```
-Auth-Token
-```
-
-Data:
-
-```
-title
-```
-
-##To Show All Decks
-
-###Send `get` request to `/user/:username/decks`
+###Send `get` request to `/decks`
 
 Required parameters that you should provide:
 
@@ -87,10 +69,30 @@ You will receive an array of key value pairs of each deck title and deck id:
 ]
 ```
 
+##To Show a Specific Deck
+
+###Send `get` request to `/decks/:id`
+
+Must provide these parameters:
+
+Headers:
+
+```
+Auth-Token
+```
+
+You will receive a JSON like:
+
+```javascript
+{ 
+	id: 1
+	title: “The worlds coolest deck.”
+}
+```
 
 ##To Edit a Deck
 
-###Send `put` request to `/user/:username/decks/:id`
+###Send `put` request to `/decks/:id`
 
 Required parameters in addition to deck `id` in the url:
 
@@ -106,9 +108,18 @@ Data:
 title
 ```
 
+You will receive a JSON like:
+
+```javascript
+{ 
+	id: 1
+	title: “The New title for this deck.”
+}
+```
+
 ##To Delete a Deck
 
-###Send `delete` request to `/user/:username/decks/:id`
+###Send `delete` request to `/decks/:id`
 
 Required parameters in addition to deck `id` in the url:
 
@@ -117,50 +128,42 @@ Headers:
 ```
 Auth-Token
 ```
+
+##To Add a Deck
+
+###Send `post` request to `/decks`
+
+Must provide these parameters:
+
+Headers:
+
+```
+Auth-Token
+```
+
+Data:
+
+```
+title
+```
+
+You will receive a JSON like:
+
+```javascript
+{ 
+	id: 2
+	title: “The title of the deck you just added.”
+}
+```
+
+...
+
 
 #CARDS
 
-##To Add a Card
-
-###Send `post` request to `/user/:username/decks/:id/cards`
-
-Required parameters in addition to deck `id` in the url:
-
-Headers:
-
-```
-Auth-Token
-```
-
-Data:
-
-```
-question
-answer
-```
-
-##To Edit a Card
-
-###Send `put` request to `/user/:username/decks/:id/cards/:id`
-
-Required parameters in addition to deck `id` and card `id` in the url:
-
-Headers:
-
-```
-Auth-Token
-```
-
-Data:
-
-```
-question
-answer
-```
-
 ##To Show all Cards for a Deck
 
-###Send `get` request to `/user/:username/decks/:id/cards`
+###Send `get` request to `/cards`
 
 Required parameters in addition to deck `id` in the url:
 
@@ -187,4 +190,96 @@ This includes card id, card question, card answer:
 		answer: "Shrew"
 	}
 ]
+```
+
+##To Show a Specific Card
+
+###Send `get` request to `/cards/:id`
+
+Required parameters in addition to deck `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+You will receive a JSON like:
+
+```
+{
+	id: 1
+	question: "What is the largest animal?"
+	answer: "Whale"
+}
+```
+
+##To Edit a Card
+
+###Send `put` request to `/cards/:id`
+
+Required parameters in addition to deck `id` and card `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+Data:
+
+```
+question
+answer
+```
+
+You will receive a JSON like:
+
+```
+{
+	id: 3
+	question: "This is the edited question?"
+	answer: "Answer"
+}
+```
+
+##To Delete a Card
+
+###Send `delete` request to `/cards/:id`
+
+Required parameters in addition to card `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+##To Add a Card
+
+###Send `post` request to `/decks/:id/cards`
+
+Required parameters in addition to deck `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+Data:
+
+```
+question
+answer
+```
+
+You will receive a JSON like:
+
+```
+{
+	id: 5
+	question: "The question I just added"
+	answer: "Answer"
+}
 ```
