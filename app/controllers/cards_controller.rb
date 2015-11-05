@@ -2,6 +2,15 @@ class CardsController < ApplicationController
 
 	before_action :authenticate_user!, except: [:index, :show]
 
+	def index
+
+		@cards = Card.where(deck_id: params[:id])
+		@cards = @cards.map { |card| { :id => card.id, :question => card.question, :answer => card.answer } }
+
+		render "index.json.jbuilder", status: :ok
+
+	end
+
 	def create
 
 		deck = Deck.find(params[:id])
@@ -30,9 +39,7 @@ class CardsController < ApplicationController
 
 	def show
 
-		@cards = Card.where(deck_id: params[:id])
-		@cards = @cards.map { |card| { :id => card.id, :question => card.question, :answer => card.answer } }
-
+		@card = Card.find(params[:id])
 		render "show.json.jbuilder", status: :ok
 
 	end
@@ -57,7 +64,18 @@ class CardsController < ApplicationController
 
 	def destroy
 
-	end
+		card = Card.find(params[:id])
+		deck = Deck.find(card.deck_id)
 
+		if deck.user_id != current_user.id		
+			render json: { error: "User #{current_user.username} does not have access to this card." }, 
+				status: :unauthorized
+		else
+			card.destroy
+			render json: { "response": "The card with answer #{card.answer} has been deleted." }, 
+				status: :ok
+		end
+
+	end
 
 end
