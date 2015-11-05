@@ -16,8 +16,8 @@ before_action :authenticate_user!, except: [:index, :show]
   	end
 
   def index
-  	@decks = Deck.where(user_id: current_user.id)
-  	@decks = @decks.map { |deck| {:id => deck.id, :title => deck.title, :user_id => deck.user_id } }
+    @decks = current_user.decks
+  	# @decks = Deck.where(user_id: current_user.id)
   	render "index.json.jbuilder", status: :ok
   end
 
@@ -37,9 +37,10 @@ before_action :authenticate_user!, except: [:index, :show]
 	    if current_user.id == deck.user_id
 	      # flash[:notice] = "Delete this Deck: #{deck.title}"
 	      deck.destroy
-	      render "index.json.jbuilder", status: :ok
+	      render json: { "response": "The deck has been deleted." }, status: :ok
 	    else
-	      flash[:notice] = "You are NOT authorized to delete this Deck."
-	    end
+        render json: { error: "User #{current_user.username} does not have access to this deck." }, 
+                status: :unauthorized	   
+     end
   end
 end
