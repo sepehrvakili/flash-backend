@@ -1,7 +1,6 @@
 class DecksController < ApplicationController
 
 before_action :authenticate_user!, except: [:index, :show]
-current_user
   
  def create
 
@@ -17,8 +16,8 @@ current_user
   	end
 
   def index
-  	@decks = Deck.find_by(current_user.id)
-  	@deck = @deck.map { |deck| {:id => deck.id, :title => deck.title } }
+  	@decks = Deck.where(user_id: current_user.id)
+  	@decks = @decks.map { |deck| {:id => deck.id, :title => deck.title, :user_id => deck.user_id } }
   	render "index.json.jbuilder", status: :ok
   end
 
