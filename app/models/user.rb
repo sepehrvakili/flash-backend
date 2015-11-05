@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  has_many :user_guesses
+  has_many :cards, :through => :user_guesses
+
   before_validation :ensure_access_token!
 
   validates_presence_of :username, :firstname, :lastname
