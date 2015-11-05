@@ -1,3 +1,1 @@
-json.user do
-  json.extract! @user, :auth_token, :firstname, :lastname, :email, :username
-end
+json.extract! @user, :auth_token, :firstname, :lastname, :email, :username
