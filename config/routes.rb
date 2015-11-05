@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   
 
   ## Routes for managing cards:
-  get     "cards", to: "cards#show"
-  post    "cards", to: "cards#create"
-  put     "cards", to: "cards#update"
-  delete  "cards", to: "cards#destroy"
+  get     "decks/cards", to: "cards#show"
+  post    "decks/cards", to: "cards#create"
+  put     "decks/cards", to: "cards#update"
+  delete  "decks/cards", to: "cards#destroy"
 
   # Example resource route with options:
   #   resources :products do
