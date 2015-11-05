@@ -2,31 +2,56 @@ class CardsController < ApplicationController
 
 	before_action :authenticate_user!, except: [:index, :show]
 
-	current_user
-
 	def create
 
-		user = current_user
 		deck = Deck.find(params[:id])
 
-    @card = deck.Card.new(
-      question: params[:question],
-      answer: params[:answer])
+		if deck.user_id != current_user.id
+			render json: { error: "User #{current_user.username} does not have access to deck #{deck.title}." }, 
+				status: :unauthorized
+		else
 
-    if @card.save
-      render "create.json.jbuilder", status: :created
-    else
-      render json: { errors: @card.errors.full_messages },
-        status: :unprocessable_entity
-    end
+	    @card = Card.new(
+	      question: params[:question],
+	      answer: params[:answer],
+	      deck_id: deck.id
+	      )
+
+	    if @card.save
+	      render "create.json.jbuilder", status: :created
+	    else
+	      render json: { errors: @card.errors.full_messages },
+	        status: :unprocessable_entity
+	    end
+
+	  end
 
 	end
 
 	def show
 
+		@cards = Card.where(deck_id: params[:id])
+		@cards = @cards.map { |card| { :id => card.id, :question => card.question, :answer => card.answer } }
+
+		render "show.json.jbuilder", status: :ok
+
 	end
 
 	def update
+
+		@card = Card.find(params[:id])
+		deck = Deck.find(@card.deck_id)
+
+		if deck.user_id != current_user.id		
+			render json: { error: "User #{current_user.username} does not have access to this card." }, 
+				status: :unauthorized
+		else
+			@card.update(
+	      question: params[:question],
+	      answer: params[:answer]
+	    )
+			render "update.json.jbuilder", status: :ok
+		end
 
 	end
 
