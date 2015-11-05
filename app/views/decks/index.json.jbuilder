@@ -1,1 +1,3 @@
-json.extract! @deck, :title, :id
+json.array! @decks do |deck|
+  json.extract! deck, :id, :title, :user_id
+end
