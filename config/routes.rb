@@ -19,13 +19,18 @@ Rails.application.routes.draw do
 
   post    "login",  to: "registrations#login"
 
-  
+  ## Routes for managing decks:
+  get     "decks",     to: "decks#show",     as: "decks"
+  post    "decks",     to: "decks#create"
+  put     "decks/:id", to: "decks#update"
+  delete  "decks/:id", to: "decks#destroy"
+
 
   ## Routes for managing cards:
-  get     "decks/cards", to: "cards#show"
-  post    "decks/cards", to: "cards#create"
-  put     "decks/cards", to: "cards#update"
-  delete  "decks/cards", to: "cards#destroy"
+  get     "decks/:id/cards",     to: "cards#show",     as: "cards"
+  post    "decks/:id/cards",     to: "cards#create"
+  put     "decks/:id/cards/:id", to: "cards#update"
+  delete  "decks/:id/cards/:id", to: "cards#destroy"
 
   # Example resource route with options:
   #   resources :products do
