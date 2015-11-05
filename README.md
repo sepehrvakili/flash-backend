@@ -44,23 +44,32 @@ You will receive the following JSON:
 
 ##To Add a Deck
 
-###Send `post` request to `/decks`
+###Send `post` request to `/user/:username/decks`
 
 Must provide these parameters:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
+```
+
+Data:
+
+```
 title
 ```
 
 ##To Show All Decks
 
-###Send `get` request to `/decks`
+###Send `get` request to `/user/:username/decks`
 
-Required parameters:
+Required parameters that you should provide:
+
+Headers:
 
 ```
-auth_token
+Auth-Token
 ```
 
 You will receive an array of key value pairs of each deck title and deck id:
@@ -81,59 +90,84 @@ You will receive an array of key value pairs of each deck title and deck id:
 
 ##To Edit a Deck
 
-###Send `put` request to `/decks/:id`
+###Send `put` request to `/user/:username/decks/:id`
 
 Required parameters in addition to deck `id` in the url:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
+```
+
+Data:
+
+```
 title
 ```
 
 ##To Delete a Deck
 
-###Send `delete` request to `/decks/:id`
+###Send `delete` request to `/user/:username/decks/:id`
 
 Required parameters in addition to deck `id` in the url:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
 ```
 
 #CARDS
 
 ##To Add a Card
 
-###Send `post` request to `/decks/:id/cards`
+###Send `post` request to `/user/:username/decks/:id/cards`
 
 Required parameters in addition to deck `id` in the url:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
+```
+
+Data:
+
+```
 question
 answer
 ```
 
 ##To Edit a Card
 
-###Send `put` request to `/decks/:id/cards/:id`
+###Send `put` request to `/user/:username/decks/:id/cards/:id`
 
 Required parameters in addition to deck `id` and card `id` in the url:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
+```
+
+Data:
+
+```
 question
 answer
 ```
 
 ##To Show all Cards for a Deck
 
-###Send `get` request to `/decks/:id/cards`
+###Send `get` request to `/user/:username/decks/:id/cards`
 
 Required parameters in addition to deck `id` in the url:
 
+Headers:
+
 ```
-auth_token
+Auth-Token
 ```
 
 You will receive an array of key value pairs of all cards for that deck.
