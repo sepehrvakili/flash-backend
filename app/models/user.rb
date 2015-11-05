@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  has_many :decks
   has_many :user_guesses
   has_many :cards, :through => :user_guesses
+  has_many :cards, :through => :decks
 
   before_validation :ensure_access_token!
 
