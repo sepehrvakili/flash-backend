@@ -61,7 +61,6 @@ Required parameters:
 
 ```
 auth_token
-deck_id
 ```
 
 You will receive an array of key value pairs of each deck title and deck id:
@@ -82,33 +81,32 @@ You will receive an array of key value pairs of each deck title and deck id:
 
 ##To Edit a Deck
 
-###Send `put` request to `/decks`
+###Send `put` request to `/decks/:id`
 
-Required parameters:
+Required parameters in addition to deck `id` in the url:
 
 ```
 auth_token
-deck_id
 title
 ```
 
 ##To Delete a Deck
 
-###Send `delete` request to `/decks`
+###Send `delete` request to `/decks/:id`
 
-Required parameters:
+Required parameters in addition to deck `id` in the url:
 
 ```
-deck_id
+auth_token
 ```
 
 #CARDS
 
 ##To Add a Card
 
-###Send `post` request to `/decks/cards`
+###Send `post` request to `/decks/:id/cards`
 
-Required parameters:
+Required parameters in addition to deck `id` in the url:
 
 ```
 auth_token
@@ -118,26 +116,24 @@ answer
 
 ##To Edit a Card
 
-###Send `put` request to `/decks/cards`
+###Send `put` request to `/decks/:id/cards/:id`
 
-Required parameters:
+Required parameters in addition to deck `id` and card `id` in the url:
 
 ```
 auth_token
-card_id
 question
 answer
 ```
 
 ##To Show all Cards for a Deck
 
-###Send `get` request to `/decks/cards`
+###Send `get` request to `/decks/:id/cards`
 
-Required parameters:
+Required parameters in addition to deck `id` in the url:
 
 ```
 auth_token
-card_id
 ```
 
 You will receive an array of key value pairs of all cards for that deck.
