@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Rack Cors to make cross domain ajax calls
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
