@@ -14,10 +14,18 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  post "/signup", to: "registrations#create"
-  delete "/signup", to: "registrations#destroy"
+  post    "signup", to: "registrations#create"
+  delete  "signup", to: "registrations#destroy"
 
-  post "/login", to: "registrations#login"
+  post    "login",  to: "registrations#login"
+
+  
+
+  ## Routes for managing cards:
+  get     "cards", to: "cards#show"
+  post    "cards", to: "cards#create"
+  put     "cards", to: "cards#update"
+  delete  "cards", to: "cards#destroy"
 
   # Example resource route with options:
   #   resources :products do
