@@ -5,8 +5,6 @@ class CardsController < ApplicationController
 	def index
 
 		@cards = Card.where(deck_id: params[:id])
-		@cards = @cards.map { |card| { :id => card.id, :question => card.question, :answer => card.answer } }
-
 		render "index.json.jbuilder", status: :ok
 
 	end
