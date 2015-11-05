@@ -4,11 +4,10 @@ class CardsController < ApplicationController
 
 	def create
 
-		user = current_user
-		deck = Deck.find_by(user_id: user.id)
+		deck = Deck.find(params[:id])
 
-		if deck.user_id != user.id
-			render json: { error: "User #{user.username} does not have access to deck #{deck.title}." }, 
+		if deck.user_id != current_user.id
+			render json: { error: "User #{current_user.username} does not have access to deck #{deck.title}." }, 
 				status: :unauthorized
 		else
 
@@ -27,15 +26,32 @@ class CardsController < ApplicationController
 
 	  end
 
-
-
 	end
 
 	def show
 
+		@cards = Card.where(deck_id: params[:id])
+		@cards = @cards.map { |card| { :id => card.id, :question => card.question, :answer => card.answer } }
+
+		render "show.json.jbuilder", status: :ok
+
 	end
 
 	def update
+
+		@card = Card.find(params[:id])
+		deck = Deck.find(@card.deck_id)
+
+		if deck.user_id != current_user.id		
+			render json: { error: "User #{current_user.username} does not have access to this card." }, 
+				status: :unauthorized
+		else
+			@card.update(
+	      question: params[:question],
+	      answer: params[:answer]
+	    )
+			render "update.json.jbuilder", status: :ok
+		end
 
 	end
 
