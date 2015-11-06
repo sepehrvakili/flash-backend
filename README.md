@@ -163,7 +163,7 @@ You will receive a JSON like:
 
 ##To Show all Cards for a Deck
 
-###Send `get` request to `/cards`
+###Send `get` request to `decks/:id/cards`
 
 Required parameters in addition to deck `id` in the url:
 
@@ -190,6 +190,35 @@ This includes card id, card question, card answer:
 		answer: "Shrew"
 	}
 ]
+```
+
+##To Add a Card
+
+###Send `post` request to `/decks/:id/cards`
+
+Required parameters in addition to deck `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+Data:
+
+```
+question
+answer
+```
+
+You will receive a JSON like:
+
+```
+{
+	id: 5
+	question: "The question I just added"
+	answer: "Answer"
+}
 ```
 
 ##To Show a Specific Card
@@ -255,31 +284,4 @@ Headers:
 Auth-Token
 ```
 
-##To Add a Card
 
-###Send `post` request to `/decks/:id/cards`
-
-Required parameters in addition to deck `id` in the url:
-
-Headers:
-
-```
-Auth-Token
-```
-
-Data:
-
-```
-question
-answer
-```
-
-You will receive a JSON like:
-
-```
-{
-	id: 5
-	question: "The question I just added"
-	answer: "Answer"
-}
-```
