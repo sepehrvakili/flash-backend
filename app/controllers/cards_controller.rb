@@ -60,6 +60,25 @@ class CardsController < ApplicationController
 
 	end
 
+	def updateall
+
+		@cards = params[:cards]
+
+		deck = Deck.find(params[:id])
+
+		if deck.user_id != current_user.id		
+			render json: { error: "User #{current_user.username} does not have access to this card." }, 
+				status: :unauthorized
+		else
+			@cards.each do |card|
+				binding.pry
+				Card.update(card[:id], question: card[:question], answer: card[:answer])
+			end
+			render "update.json.jbuilder", status: :ok
+		end
+
+	end
+
 	def destroy
 
 		card = Card.find(params[:id])
