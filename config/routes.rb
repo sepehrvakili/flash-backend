@@ -30,13 +30,14 @@ Rails.application.routes.draw do
   ## Routes for managing cards:
   get     "decks/:id/cards",  to: "cards#index"
   post    "decks/:id/cards",  to: "cards#create"
+  put     "decks/:id/cards",  to: "cards#updateall"
   get     "cards/:id",        to: "cards#show"
   put     "cards/:id",        to: "cards#update"
   delete  "cards/:id",        to: "cards#destroy"
 
 
   ## Routes for managing guesses:
-  post    "scores",      to: "scores#create"
+  post    "scoreboard",      to: "scores#create"
 
   # Example resource route with options:
   #   resources :products do
