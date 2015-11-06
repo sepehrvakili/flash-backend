@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   put     "cards/:id",        to: "cards#update"
   delete  "cards/:id",        to: "cards#destroy"
 
+
+  ## Routes for managing guesses:
+  post    "scores",      to: "scores#create"
+
   # Example resource route with options:
   #   resources :products do
   #     member do

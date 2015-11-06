@@ -1,0 +1,1 @@
+json.extract! @score, :user_id, :card_id, :duration, :correct
