@@ -192,6 +192,35 @@ This includes card id, card question, card answer:
 ]
 ```
 
+##To Edit All Cards for a Deck
+
+###Send `put` request to `/decks/:id/cards`
+
+Required parameters in addition to deck `id` in the url:
+
+Headers:
+
+```
+Auth-Token
+```
+
+Data to be provided by you:
+
+```javascript
+[
+    {
+        id: 1
+        question: "What is the largest animal?"
+        answer: "Whale"
+    },
+    {
+        id: 2
+        question: "What is the smallest animal?"
+        answer: "Shrew"
+    }
+]
+```
+
 ##To Add a Card
 
 ###Send `post` request to `/decks/:id/cards`
