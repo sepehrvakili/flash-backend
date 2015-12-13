@@ -1,6 +1,11 @@
-#Main Backend app URL:
+#About
 
-`https://tiysmashcards.herokuapp.com`
+This is the backend for a flashcard study app I built at The Iron Yard.
+
+#Main App URLs:
+
+Heroku Backend: `https://tiysmashcards.herokuapp.com`
+Live App: [http://smash.surge.sh/](http://smash.surge.sh/)
 
 #ADMIN
 ##To Signup
